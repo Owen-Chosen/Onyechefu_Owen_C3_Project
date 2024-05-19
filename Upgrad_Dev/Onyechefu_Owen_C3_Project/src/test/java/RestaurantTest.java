@@ -6,6 +6,7 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,6 +31,14 @@ class RestaurantTest {
         Mockito.when(restaurant.isRestaurantOpen()).thenReturn(false);
         assertFalse(restaurant.isRestaurantOpen());
 
+    }
+
+    @Test
+    public void get_Total_Cost_Of_Order_should_return_the_total_cost_of_selected_items_which_is_passed_as_parameter() {
+        restaurant.addToMenu("Sweet corn soup",119);
+        restaurant.addToMenu("Vegetable lasagne", 269);
+        List<Item> selectedItems = restaurant.getMenu();
+        assertEquals(388, restaurant.getTotalCostOfOrder(selectedItems));
     }
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
